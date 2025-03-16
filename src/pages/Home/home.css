@@ -1,0 +1,276 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md);
+  background-color: var(--secondary-color);
+  min-height: 100vh;
+}
+
+.home-title {
+  font-size: var(--font-size-large);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-color);
+}
+
+.home-content {
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  border: 2px solid var(--border-color);
+}
+
+.home-section {
+  margin-bottom: var(--spacing-md);
+}
+
+.home-section-title {
+  font-size: var(--font-size-large);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-color);
+}
+
+.home-section-description {
+  color: var(--light-text-color);
+  line-height: 1.4;
+}
+
+.home-section-list {
+  list-style: none;
+  padding: 0;
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius-md);
+  border: 2px solid var(--border-color);
+  overflow: hidden;
+  margin-top: var(--spacing-sm);
+}
+
+.home-section-list-item {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.home-section-list-item:last-child {
+  border-bottom: none;
+}
+
+.home-section-list-item a {
+  color: var(--text-color);
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+/* Mobile app scrollable cards */
+.ios-scrollable-cards {
+  display: flex;
+  overflow-x: auto;
+  padding: var(--spacing-sm) 0;
+  margin: 0 -var(--spacing-md);
+  padding-left: var(--spacing-md);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.ios-scrollable-cards::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.ios-card {
+  flex: 0 0 auto;
+  width: 280px;
+  margin-right: var(--spacing-sm);
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  border: 2px solid var(--border-color);
+}
+
+.ios-card-badge {
+  background-color: var(--tertiary-color);
+  color: var(--text-color);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.ios-card-title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-color);
+}
+
+.ios-card-subtitle {
+  color: var(--light-text-color);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Mobile app action grid */
+.ios-action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+}
+
+.ios-action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  text-decoration: none;
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+}
+
+.ios-action-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: var(--tertiary-color);
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile app section header with "See All" link */
+.ios-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.ios-section-header h2 {
+  font-size: var(--font-size-large);
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.ios-section-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: var(--font-size-base);
+}
+
+/* Welcome card */
+.ios-welcome-card {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  border: 2px solid var(--border-color);
+}
+
+.ios-greeting {
+  font-size: var(--font-size-large);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.ios-subheading {
+  font-size: var(--font-size-base);
+  opacity: 0.9;
+}
+
+/* Button that matches the React Native style */
+.ios-button {
+  display: inline-block;
+  padding: 6px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: var(--border-radius-md);
+  border: 1px solid gray;
+  font-size: var(--font-size-base);
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* List section styles */
+.ios-list-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.ios-list {
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  margin-bottom: var(--spacing-lg);
+  border: 2px solid var(--border-color);
+}
+
+.ios-list-item {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.ios-list-item:last-child {
+  border-bottom: none;
+}
+
+.ios-list-item-content {
+  flex: 1;
+}
+
+.ios-list-item-title {
+  font-size: var(--font-size-base);
+  color: var(--text-color);
+  margin-bottom: 2px;
+}
+
+.ios-list-item-date {
+  font-size: var(--font-size-small);
+  color: var(--light-text-color);
+}
+
+.ios-chevron {
+  width: 8px;
+  height: 13px;
+  background-color: var(--light-text-color);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 13'%3E%3Cpath d='M0,11.4L4.9,6.5L0,1.6L1.6,0l6.5,6.5l-6.5,6.5L0,11.4z' fill='%23bbb'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 13'%3E%3Cpath d='M0,11.4L4.9,6.5L0,1.6L1.6,0l6.5,6.5l-6.5,6.5L0,11.4z' fill='%23bbb'/%3E%3C/svg%3E");
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+}
+
+.ios-home {
+  padding-bottom: var(--tab-bar-height);
+}
+
+/* iPad/tablet responsive adjustments */
+@media (min-width: var(--breakpoint-tablet)) {
+  .ios-action-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  
+  .home-container {
+    padding: var(--spacing-lg);
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,242 @@
+.sidebar {
+  background-color: #202b4b;
+  color: white;
+  padding: 1rem;
+  height: 100%;
+  min-width: 200px;
+}
+
+.sidebar-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.sidebar-section h3 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.sidebar-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-section li {
+  margin-bottom: var(--spacing-sm);
+}
+
+.sidebar-section a {
+  text-decoration: none;
+  color: var(--light-text-color);
+  display: block;
+  padding: var(--spacing-sm);
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-section a:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+/* Tab navigation styling - updated to match React Native app */
+.tab-navigation ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tab-navigation li {
+  margin-bottom: 10px;
+}
+
+.tab-navigation a {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #cccecd; /* Inactive color from React Native app */
+  border-radius: 5px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.tab-navigation li.active a {
+  color: #74c6fc; /* Active tab color from React Native app */
+}
+
+.tab-navigation a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-icon {
+  margin-right: 10px;
+  font-size: 20px;
+  color: #cccecd; /* Default icon color - inactive */
+}
+
+/* The active tab gets a colored icon */
+.tab-navigation li.active .nav-icon {
+  color: #74c6fc; /* Active icon color - same as active text */
+}
+
+/* iOS Tab Bar Styling - Significantly improved visibility */
+.ios-tab-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #ffffff !important; /* Much brighter inactive color */
+  border-radius: 5px;
+  transition: all 0.2s ease;
+  opacity: 0.8 !important; /* Slightly dimmed but still very visible */
+}
+
+.tab-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  opacity: 1 !important;
+}
+
+.tab-item.active {
+  color: #74c6fc !important; /* Active tab color - blue */
+  opacity: 1 !important;
+}
+
+.tab-icon {
+  margin-right: 10px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Ensure SVG icons are highly visible */
+.tab-icon svg {
+  fill: currentColor !important;
+  opacity: 1 !important;
+  width: 1em;
+  height: 1em;
+  display: block;
+  visibility: visible !important;
+}
+
+.tab-item .tab-icon {
+  color: #ffffff !important; /* White for inactive icons */
+  opacity: 0.8 !important;
+}
+
+.tab-item.active .tab-icon {
+  color: #74c6fc !important; /* Bright blue for active icons */
+  opacity: 1 !important;
+}
+
+.tab-label {
+  font-size: 16px;
+  font-weight: 400;
+  color: inherit !important; 
+  opacity: inherit !important;
+}
+
+.tab-item.active .tab-label {
+  font-weight: 500;
+}
+
+/* Responsive styles for small screens - enhanced to match React Native app */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    width: 100%;
+    min-width: unset;
+    z-index: 1000;
+    padding: 10px 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    background-color: #202b4b !important;
+  }
+  
+  .tab-navigation ul {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  
+  .tab-navigation a {
+    flex-direction: column;
+    padding: 8px;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  
+  .nav-icon {
+    margin-right: 0;
+    margin-bottom: 5px;
+    font-size: 24px; /* Larger icons for mobile */
+  }
+  
+  .tab-navigation li {
+    margin-bottom: 0;
+    width: 20%; /* Equal width for 5 tabs */
+    text-align: center;
+  }
+
+  .tab-navigation li.active a {
+    background-color: transparent; /* No background color on mobile for active tab */
+    font-weight: 500;
+  }
+
+  .ios-tab-bar {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .tab-item {
+    flex-direction: column;
+    padding: 8px 12px;
+    text-align: center;
+    width: 20%;
+    color: #ffffff !important; /* Force white color */
+  }
+  
+  .tab-icon {
+    margin-right: 0;
+    margin-bottom: 5px;
+    font-size: 24px !important;
+    justify-content: center;
+  }
+
+  /* Stronger icon visibility on mobile */
+  .tab-icon svg {
+    opacity: 1 !important;
+    width: 1.5em !important;
+    height: 1.5em !important;
+    color: #ffffff !important;
+  }
+  
+  .tab-label {
+    font-size: 0.7rem;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Enhanced active state on mobile */
+  .tab-item.active, 
+  .tab-item.active .tab-icon, 
+  .tab-item.active .tab-icon svg,
+  .tab-item.active .tab-label {
+    color: #74c6fc !important;
+    opacity: 1 !important;
+  }
+}

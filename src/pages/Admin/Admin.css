@@ -1,0 +1,25 @@
+.admin-container {
+    padding: var(--spacing-lg);
+  }
+  
+  .admin-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .manage-moderators-section,
+  .global-announcements-section,
+  .chat-interface-section {
+    margin-bottom: var(--spacing-lg);
+    background-color: #fff;
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .manage-moderators-section h3,
+  .global-announcements-section h3,
+  .chat-interface-section h3 {
+    margin-bottom: var(--spacing-sm);
+  }
+v  

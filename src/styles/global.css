@@ -1,0 +1,625 @@
+/* Global reset or normalize (optional) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+html, body {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    background-color: var(--secondary-color); /* Dark background */
+    color: var(--text-color); /* White text */
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent elastic scrolling on iOS */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    overflow-y: auto;
+    /* Cross-browser solution for overscroll behavior */
+    /* Safari iOS <16 won't use this but will degrade gracefully */
+    overscroll-behavior: contain; 
+    /* For iOS momentum scrolling feel */
+    -webkit-overflow-scrolling: touch;
+}
+
+#root {
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* iOS-style button */
+.ios-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius-md);
+    padding: 10px 20px;
+    font-weight: 600;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.ios-button-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--border-color);
+}
+
+/* iOS button touch states */
+.ios-button:active {
+  opacity: 0.7;
+  transform: scale(0.98);
+}
+
+.ios-list-item:active {
+  background-color: var(--secondary-color);
+}
+
+.ios-action-item:active {
+  opacity: 0.7;
+  transform: scale(0.98);
+}
+
+/* iOS-style card */
+.ios-card {
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--box-shadow);
+}
+
+/* iOS-style list */
+.ios-list {
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    margin-bottom: var(--spacing-lg);
+}
+
+.ios-list-item {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ios-list-item:last-child {
+    border-bottom: none;
+}
+
+/* iOS-style form elements */
+input, textarea, select {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-md);
+    appearance: none;
+}
+
+/* Utility classes */
+.text-center {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.ios-badge {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: var(--font-size-small);
+    font-weight: bold;
+}
+
+.ios-separator {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: var(--spacing-md) 0;
+}
+
+/* iOS-style spinner */
+.ios-spinner {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 122, 255, 0.2);
+  border-top-color: var(--primary-color);
+  animation: ios-spin 1s linear infinite;
+}
+
+@keyframes ios-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* iOS-style switch */
+.ios-switch {
+  position: relative;
+  display: inline-block;
+  width: 51px;
+  height: 31px;
+}
+
+.ios-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ios-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #E9E9EA;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.ios-switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 27px;
+  width: 27px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+input:checked + .ios-switch-slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .ios-switch-slider:before {
+  transform: translateX(20px);
+}
+
+/* Global styles adapted from React Native app */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Common styles for containers */
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+/* Student item styles */
+.student-item {
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.student-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  object-fit: cover;
+}
+
+.student-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.student-details {
+  font-size: 12px;
+  color: #555;
+}
+
+/* Students list container */
+.students-container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.flat-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Filter modal styles */
+.modal-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 16px;
+}
+
+.filter-option {
+  padding: 8px;
+  border-radius: 8px;
+  margin: 18px;
+  background-color: var(--primary-color);
+  margin-top: 6px;
+  margin-bottom: 6px; /* Replace margin-vertical with explicit top/bottom margins */
+  cursor: pointer;
+}
+
+.filter-option-text {
+  font-size: 14px;
+  color: #333;
+}
+
+.active-filter-option {
+  background-color: #e0e0e0;
+}
+
+.close-button {
+  background-color: #fff;
+  padding: 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  cursor: pointer;
+}
+
+.close-button-text {
+  font-size: 16px;
+  color: blue;
+}
+
+/* Container - mimics React Native flex container */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 14px; /* Match RN padding */
+    background-color: var(--secondary-color);
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Mobile app button styles */
+.app-button {
+    padding: 6px;
+    background-color: var(--primary-color);
+    height: 40px;
+    border-color: gray;
+    border-width: 1px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 6px 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.app-button-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.app-button-icon {
+    margin-right: 5px;
+}
+
+.app-button-text {
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: var(--font-size-base);
+}
+
+/* Student item styles - matching React Native */
+.student-item {
+    margin: 6px;
+    padding: 5px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 12px);
+}
+
+.student-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 9px;
+    margin: 9px;
+    object-fit: cover;
+}
+
+.student-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    margin-left: 9px;
+    color: var(--text-color);
+    text-align: left;
+    width: 100%;
+}
+
+.student-details {
+    font-size: 14px;
+    color: var(--text-color);
+    text-align: center;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed var(--text-color);
+    border-radius: 10px;
+    width: 120px;
+    height: 120px;
+    margin: 9px;
+}
+
+/* Students container - matching React Native layout */
+.students-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background-color: var(--secondary-color);
+}
+
+.flat-list-container {
+    margin-top: 6px;
+    padding: 0 2px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 2px;
+    margin: 8px;
+}
+
+/* Filter buttons */
+.filter-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: var(--tertiary-color);
+    margin-top: 0;
+}
+
+.filter-button {
+    background-color: var(--primary-color);
+    padding: 6px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin: 0 8px;
+    cursor: pointer;
+}
+
+.filter-button-text {
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.clear-filter-button {
+    background-color: red;
+    padding: 6px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    margin: 0 8px;
+    cursor: pointer;
+}
+
+/* Filter modal styles */
+.modal-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 100%;
+}
+
+.modal-content {
+    background-color: var(--tertiary-color);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 16px;
+    height: 80%;
+    overflow-y: auto;
+    animation: slide-up 0.3s ease-out;
+}
+
+@keyframes slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.tab-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-button {
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid transparent;
+    border-radius: 8px;
+}
+
+.active-tab {
+    background-color: #3498db;
+    border-radius: 8px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.tab-button-text {
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.active-tab-text {
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.filter-option {
+    padding: 8px;
+    border-radius: 8px;
+    margin: 18px;
+    background-color: var(--primary-color);
+    margin-top: 6px;
+    margin-bottom: 6px; /* Replace margin-vertical with explicit top/bottom margins */
+    cursor: pointer;
+}
+
+.filter-option-text {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.active-filter-option {
+    background-color: var(--secondary-color);
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.small-button {
+    width: 30%;
+}
+
+.backdrop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Form elements */
+.text-input {
+    border: 1px solid gray;
+    background-color: #fff;
+    margin: 2px 0;
+    padding: 5px;
+    height: 38px;
+    border-radius: 5px;
+    width: 100%;
+    color: #333;
+}
+
+.disabled-input {
+    background-color: #f2f2f2;
+}
+
+/* Utility classes */
+.text-center { text-align: center; }
+.flex { display: flex; }
+.flex-row { flex-direction: row; }
+.flex-column { flex-direction: column; }
+.align-center { align-items: center; }
+.justify-center { justify-content: center; }
+.space-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1; }
+
+/* Link styling */
+.link-text {
+    color: var(--text-color);
+    font-size: 18px;
+    text-decoration: none;
+}
+
+/* Error and success messages */
+.error-text {
+    color: red;
+    font-size: 16px;
+}
+
+.success-text {
+    color: green;
+    font-size: 16px;
+}
