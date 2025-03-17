@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Annual Alumni Meet 2023",
+    "date": "2023-12-15",
+    "excerpt": "Join us for the annual alumni gathering happening next month...",
+    "description": "Full details and schedule for Annual Alumni Meet 2023. This event will feature keynote speakers, breakout sessions, and networking opportunities, ensuring a memorable experience for all attendees."
+  },
+  {
+    "id": 2,
+    "title": "New Mentorship Program",
+    "date": "2023-11-20",
+    "excerpt": "We are excited to announce our new mentorship initiative...",
+    "description": "Full details for our new mentorship program are available here. Connect with industry leaders, build your network, and take advantage of tailored guidance designed to accelerate your career growth."
+  }
+]

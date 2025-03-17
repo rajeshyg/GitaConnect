@@ -1,45 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './home.css';
+import opportunities from '../../data/opportunities.json';
+import announcements from '../../data/announcements.json';
 
 const Home = () => {
-  // Mock data for featured opportunities
-  const featuredOpportunities = [
-    {
-      id: 1,
-      title: 'Software Engineering Internship',
-      company: 'Tech Innovations Inc.',
-      type: 'internship',
-    },
-    {
-      id: 2,
-      title: 'Full Scholarship for Computer Science',
-      organization: 'National Science Foundation',
-      type: 'scholarship',
-    },
-    {
-      id: 3,
-      title: 'MBA Program Applications Open',
-      institution: 'Business Leadership University',
-      type: 'college',
-    },
-  ];
+  const [filterCategory, setFilterCategory] = useState('all');
+  const handleFilter = (category) => setFilterCategory(category);
 
-  // Mock data for recent announcements
-  const recentAnnouncements = [
-    {
-      id: 1,
-      title: 'Annual Alumni Meet 2023',
-      date: '2023-12-15',
-      excerpt: 'Join us for the annual alumni gathering happening next month...',
-    },
-    {
-      id: 2,
-      title: 'New Mentorship Program',
-      date: '2023-11-20',
-      excerpt: 'We are excited to announce our new mentorship initiative...',
-    },
-  ];
+  const filteredOpportunities = opportunities.filter(opp => {
+    if (filterCategory === 'all') return true;
+    if (filterCategory === 'scholarship') return opp.type === 'scholarship';
+    if (filterCategory === 'internship') return opp.type === 'internship';
+    if (filterCategory === 'admissions') return opp.type === 'college';
+    return true;
+  });
+  const displayedOpportunities = filteredOpportunities.slice(0, 3);
+  const recentAnnouncements = announcements.slice(0, 2);
 
   return (
     <div className="ios-home">
@@ -54,12 +31,21 @@ const Home = () => {
           <Link to="/opportunities" className="ios-section-link">See All</Link>
         </div>
         
+        <div className="ios-filter-tags">
+          <button onClick={() => handleFilter('all')} className={filterCategory==='all' ? 'active' : ''}>All</button>
+          <button onClick={() => handleFilter('scholarship')} className={filterCategory==='scholarship' ? 'active' : ''}>Scholarships</button>
+          <button onClick={() => handleFilter('internship')} className={filterCategory==='internship' ? 'active' : ''}>Internships</button>
+          <button onClick={() => handleFilter('admissions')} className={filterCategory==='admissions' ? 'active' : ''}>Admissions</button>
+        </div>
+        
         <div className="ios-scrollable-cards">
-          {featuredOpportunities.map(opportunity => (
+          {displayedOpportunities.map(opportunity => (
             <div className="ios-card" key={opportunity.id}>
               <div className="ios-card-badge">{opportunity.type}</div>
               <h3 className="ios-card-title">{opportunity.title}</h3>
-              <p className="ios-card-subtitle">{opportunity.company || opportunity.organization || opportunity.institution}</p>
+              <p className="ios-card-subtitle">
+                {opportunity.company || opportunity.organization || opportunity.institution}
+              </p>
               <Link to={`/opportunities/${opportunity.id}`} className="ios-button">View Details</Link>
             </div>
           ))}

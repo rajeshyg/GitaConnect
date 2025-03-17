@@ -1,0 +1,88 @@
+[
+  {
+    "id": 1,
+    "title": "Software Engineering Internship",
+    "company": "Tech Innovations Inc.",
+    "type": "internship",
+    "description": "Kickstart your career with hands-on coding and real-world projects."
+  },
+  {
+    "id": 2,
+    "title": "Full Scholarship for Computer Science",
+    "organization": "National Science Foundation",
+    "type": "scholarship",
+    "description": "Pursue your passion without financial burden."
+  },
+  {
+    "id": 3,
+    "title": "MBA Program Applications Open",
+    "institution": "Business Leadership University",
+    "type": "college",
+    "description": "Discover comprehensive curriculum and advanced leadership training.",
+    "interestLink": "/express-interest/3",
+    "commentLink": "/comments/3"
+  },
+  {
+    "id": 4,
+    "title": "Data Science Bootcamp",
+    "company": "Data Wizards Corp.",
+    "type": "bootcamp",
+    "description": "Learn data analysis, machine learning, and predictive modeling from industry experts.",
+    "interestLink": "/express-interest/4",
+    "commentLink": "/comments/4"
+  },
+  {
+    "id": 5,
+    "title": "Digital Marketing Internship",
+    "company": "Creative Media Group",
+    "type": "internship",
+    "description": "Gain hands-on experience in digital marketing strategies and SEO.",
+    "interestLink": "/express-interest/5",
+    "commentLink": "/comments/5"
+  },
+  {
+    "id": 6,
+    "title": "Graphic Design Scholarship",
+    "organization": "Art Vision Institute",
+    "type": "scholarship",
+    "description": "Unlock your creative potential with industry-leading design courses.",
+    "interestLink": "/express-interest/6",
+    "commentLink": "/comments/6"
+  },
+  {
+    "id": 7,
+    "title": "Cybersecurity Workshop",
+    "institution": "SecureTech Academy",
+    "type": "workshop",
+    "description": "Understand the fundamentals of cybersecurity and ethical hacking.",
+    "interestLink": "/express-interest/7",
+    "commentLink": "/comments/7"
+  },
+  {
+    "id": 8,
+    "title": "Business Analyst Internship",
+    "company": "Strategy Consulting LLC",
+    "type": "internship",
+    "description": "Develop analytical skills through real-life business case studies.",
+    "interestLink": "/express-interest/8",
+    "commentLink": "/comments/8"
+  },
+  {
+    "id": 9,
+    "title": "PhD in Engineering Scholarship",
+    "organization": "Global Engineering Fund",
+    "type": "scholarship",
+    "description": "Advance your research in engineering with full financial support.",
+    "interestLink": "/express-interest/9",
+    "commentLink": "/comments/9"
+  },
+  {
+    "id": 10,
+    "title": "Leadership Development Program",
+    "institution": "Executive Leadership Institute",
+    "type": "program",
+    "description": "Enhance your leadership skills with cutting-edge training and mentorship.",
+    "interestLink": "/express-interest/10",
+    "commentLink": "/comments/10"
+  }
+]
