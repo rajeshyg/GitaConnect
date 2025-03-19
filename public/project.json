@@ -1,0 +1,188 @@
+{
+  "project": {
+    "id": "P001",
+    "name": "SGS Gita Connect React Web App",
+    "phases": [
+      {
+        "id": "PH001",
+        "name": "Phase 1: React Prototype Development",
+        "iterations": [
+          {
+            "id": "IT001",
+            "name": "Iteration 1: Set Up and Design System",
+            "tasks": [
+              {
+                "id": "T001",
+                "name": "Set Up Development Environment",
+                "subtasks": [
+                  {"id": "ST001", "name": "Install Node.js and NPM", "status": "completed"},
+                  {"id": "ST002", "name": "Set up React project with Create React App", "status": "completed"},
+                  {"id": "ST003", "name": "Install libraries (React Router, Axios, Jest, React Testing Library)", "status": "completed"},
+                  {"id": "ST004", "name": "Configure ESLint with SOLID principles and Prettier", "status": "completed"}
+                ]
+              },
+              {
+                "id": "T002",
+                "name": "Establish Design System",
+                "subtasks": [
+                  {"id": "ST005", "name": "Select UI library (e.g., Material-UI)", "status": "completed"},
+                  {"id": "ST006", "name": "Adapt React Native styles for web (e.g., CSS modules)", "status": "completed"},
+                  {"id": "ST007", "name": "Write tests for reusable components (e.g., button, card)", "status": "completed"},
+                  {"id": "ST008", "name": "Implement reusable components to pass tests", "status": "completed"},
+                  {"id": "ST009", "name": "Implement global styles matching React Native", "status": "completed"},
+                  {"id": "ST040", "name": "Implement responsive design for mobile and desktop", "status": "in progress"}
+                ]
+              }
+            ]
+          },
+          {
+            "id": "IT002",
+            "name": "Iteration 2: Mock Service Layer",
+            "tasks": [
+              {
+                "id": "T003",
+                "name": "Define Data Models",
+                "subtasks": [
+                  {"id": "ST010", "name": "Design schemas for students, moderators, announcements, opportunities", "status": "completed"},
+                  {"id": "ST011", "name": "Document field names and types for MySQL consistency", "status": "completed"},
+                  {"id": "ST041", "name": "Create data validation rules and constraints", "status": "completed"}
+                ]
+              },
+              {
+                "id": "T004",
+                "name": "Develop Mock Service Layer",
+                "subtasks": [
+                  {"id": "ST012", "name": "Write tests for service functions (e.g., getStudents, getOpportunities)", "status": "not started"},
+                  {"id": "ST013", "name": "Implement service functions to pass tests", "status": "not started"},
+                  {"id": "ST014", "name": "Create JSON files based on data models", "status": "not started"},
+                  {"id": "ST042", "name": "Implement error handling for service layer", "status": "not started"}
+                ]
+              }
+            ]
+          },
+          {
+            "id": "IT003",
+            "name": "Iteration 3: Admin Screens",
+            "tasks": [
+              {
+                "id": "T005",
+                "name": "Admin: Students Tab",
+                "subtasks": [
+                  {"id": "ST015", "name": "Write tests for search and filter functionality", "status": "not started"},
+                  {"id": "ST016", "name": "Implement Students Tab to pass tests", "status": "not started"}
+                ]
+              },
+              {
+                "id": "T006",
+                "name": "Admin: Moderators Tab",
+                "subtasks": [
+                  {"id": "ST017", "name": "Write tests for add/edit/delete moderators", "status": "not started"},
+                  {"id": "ST018", "name": "Implement Moderators Tab to pass tests", "status": "not started"}
+                ]
+              },
+              {
+                "id": "T007",
+                "name": "Admin: Announcements Tab",
+                "subtasks": [
+                  {"id": "ST019", "name": "Write tests for creating and sending announcements", "status": "not started"},
+                  {"id": "ST020", "name": "Implement Announcements Tab to pass tests", "status": "not started"}
+                ]
+              },
+              {
+                "id": "T008",
+                "name": "Admin: Messages Tab",
+                "subtasks": [
+                  {"id": "ST021", "name": "Write tests for 1-on-1 chat functionality (mock data)", "status": "not started"},
+                  {"id": "ST022", "name": "Implement Messages Tab to pass tests", "status": "not started"}
+                ]
+              }
+            ]
+          },
+          {
+            "id": "IT004",
+            "name": "Iteration 4: Student Screens",
+            "tasks": [
+              {
+                "id": "T009",
+                "name": "Student: Profile Tab",
+                "subtasks": [
+                  {"id": "ST023", "name": "Write tests for view and edit profile", "status": "not started"},
+                  {"id": "ST024", "name": "Implement Profile Tab to pass tests", "status": "not started"}
+                ]
+              },
+              {
+                "id": "T010",
+                "name": "Student: College Admissions Tab",
+                "subtasks": [
+                  {"id": "ST025", "name": "Write tests for posting and viewing college admissions", "status": "not started"},
+                  {"id": "ST026", "name": "Implement College Admissions Tab to pass tests", "status": "not started"}
+                ]
+              },
+              {
+                "id": "T011",
+                "name": "Student: Scholarships Tab",
+                "subtasks": [
+                  {"id": "ST027", "name": "Write tests for posting and viewing scholarships", "status": "not started"},
+                  {"id": "ST028", "name": "Implement Scholarships Tab to pass tests", "status": "not started"}
+                ]
+              },
+              {
+                "id": "T012",
+                "name": "Student: Internships Tab",
+                "subtasks": [
+                  {"id": "ST029", "name": "Write tests for posting and viewing internships", "status": "not started"},
+                  {"id": "ST030", "name": "Implement Internships Tab to pass tests", "status": "not started"}
+                ]
+              },
+              {
+                "id": "T013",
+                "name": "Student: Opportunities Tab",
+                "subtasks": [
+                  {"id": "ST031", "name": "Write tests for searching and expressing interest in opportunities", "status": "not started"},
+                  {"id": "ST032", "name": "Implement Opportunities Tab to pass tests", "status": "not started"}
+                ]
+              }
+            ]
+          },
+          {
+            "id": "IT005",
+            "name": "Iteration 5: Moderator Screens",
+            "tasks": [
+              {
+                "id": "T014",
+                "name": "Moderator: Posts to Review Tab",
+                "subtasks": [
+                  {"id": "ST033", "name": "Write tests for reviewing and approving posts", "status": "not started"},
+                  {"id": "ST034", "name": "Implement Posts to Review Tab to pass tests", "status": "not started"}
+                ]
+              },
+              {
+                "id": "T015",
+                "name": "Moderator: Approved Posts Tab",
+                "subtasks": [
+                  {"id": "ST035", "name": "Write tests for viewing and managing approved posts", "status": "not started"},
+                  {"id": "ST036", "name": "Implement Approved Posts Tab to pass tests", "status": "not started"}
+                ]
+              }
+            ]
+          },
+          {
+            "id": "IT006",
+            "name": "Iteration 6: Integration and Testing",
+            "tasks": [
+              {
+                "id": "T016",
+                "name": "Test Integration",
+                "subtasks": [
+                  {"id": "ST037", "name": "Write integration tests for screen-service interactions", "status": "not started"},
+                  {"id": "ST038", "name": "Write end-to-end tests for key workflows (e.g., post-to-approval)", "status": "not started"},
+                  {"id": "ST039", "name": "Review ESLint for SOLID compliance", "status": "not started"}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SGS Gita Connect">
+  <meta name="format-detection" content="telephone=no">
+  <title>SGS Gita Connect</title>
+  <link rel="icon" href="/favicon.ico">
+  <!-- iOS icon for home screen -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <!-- iOS splash screens -->
+  <link rel="apple-touch-startup-image" href="/splash.png">
+  <!-- iOS status bar -->
+  <style>
+    :root {
+      --safe-area-inset-top: env(safe-area-inset-top);
+      --safe-area-inset-bottom: env(safe-area-inset-bottom);
+    }
+    body {
+      padding-top: var(--safe-area-inset-top);
+      padding-bottom: var(--safe-area-inset-bottom);
+    }
+    /* Ensure tab bar icons are always visible */
+    .tab-icon svg {
+      visibility: visible !important;
+      opacity: 1 !important;
+      color: #ffffff !important;
+    }
+    .tab-item.active .tab-icon svg {
+      color: #74c6fc !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
