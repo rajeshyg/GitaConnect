@@ -1,3 +1,47 @@
+/* Global CSS variables to match React Native styling approach */
+:root {
+  /* Color palette */
+  --primary: #6200ee;
+  --primary-variant: #3700b3;
+  --secondary: #03dac6;
+  --secondary-variant: #018786;
+  --background: #ffffff;
+  --surface: #ffffff;
+  --error: #b00020;
+  --on-primary: #ffffff;
+  --on-secondary: #000000;
+  --on-background: #000000;
+  --on-surface: #000000;
+  --on-error: #ffffff;
+
+  /* Typography */
+  --font-family: 'Roboto', sans-serif;
+  --font-size-small: 0.875rem;
+  --font-size-medium: 1rem;
+  --font-size-large: 1.25rem;
+  --font-size-xlarge: 1.5rem;
+  --font-size-xxlarge: 2rem;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-s: 0.5rem;
+  --spacing-m: 1rem;
+  --spacing-l: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  /* Borders */
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 16px;
+  --border-width: 1px;
+
+  /* Shadows */
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  --shadow-3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
 /* Global reset or normalize (optional) */
 * {
     margin: 0;
@@ -622,4 +666,127 @@ body {
 .success-text {
     color: green;
     font-size: 16px;
+}
+
+/* Utility classes to mimic React Native styling */
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.shrink {
+  flex-shrink: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 1.5rem;
+    --spacing-xxl: 2rem;
+  }
+}
+
+/* Enhanced Responsive Design */
+/* Mobile First Approach */
+
+/* Base styles are for mobile (already defined above) */
+
+/* Tablet (Medium devices) */
+@media (min-width: 768px) {
+  :root {
+    --spacing-m: 1.2rem;
+    --spacing-l: 1.8rem;
+    --spacing-xl: 2.2rem;
+    --spacing-xxl: 3rem;
+    --font-size-large: 1.3rem;
+    --font-size-xlarge: 1.8rem;
+    --font-size-xxlarge: 2.5rem;
+  }
+  
+  .student-item {
+    width: calc(50% - 12px);
+  }
+  
+  .container {
+    padding: 24px;
+  }
+}
+
+/* Desktop (Large devices) */
+@media (min-width: 1024px) {
+  :root {
+    --spacing-m: 1.5rem;
+    --spacing-l: 2rem;
+    --spacing-xl: 2.5rem;
+    --spacing-xxl: 4rem;
+  }
+  
+  .student-item {
+    width: calc(33.333% - 12px);
+  }
+  
+  .filter-buttons-container {
+    padding: 16px 0;
+  }
+  
+  .modal-content {
+    max-width: 800px;
+    margin: 0 auto;
+    height: auto;
+    max-height: 80%;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+  .student-item {
+    width: calc(25% - 12px);
+  }
+  
+  .container {
+    max-width: 1200px;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+  
+  .app-button, .filter-button, .modal-container {
+    display: none;
+  }
 }

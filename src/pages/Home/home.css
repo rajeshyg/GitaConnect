@@ -186,17 +186,19 @@
   opacity: 0.9;
 }
 
-/* Button that matches the React Native style */
 .ios-button {
-  /* Reverted to original View Details button styling */
-  background: #0078d7;
-  color: #fff;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: background 0.3s;
   display: inline-block;
+  padding: 6px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: var(--border-radius-md);
+  border: 1px solid gray;
+  font-size: var(--font-size-base);
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 6px;
 }
 
 .ios-button:hover {

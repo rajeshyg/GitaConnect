@@ -1,0 +1,96 @@
+/* Component specific styles using CSS modules */
+
+.container {
+  padding: var(--spacing-m);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: var(--surface);
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing-m);
+  box-shadow: var(--shadow-1);
+  margin-bottom: var(--spacing-m);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-2);
+}
+
+.button {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  border: none;
+  border-radius: var(--border-radius-small);
+  padding: var(--spacing-s) var(--spacing-m);
+  font-size: var(--font-size-medium);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--primary-variant);
+}
+
+.button.secondary {
+  background-color: var(--secondary);
+  color: var(--on-secondary);
+}
+
+.button.secondary:hover {
+  background-color: var(--secondary-variant);
+}
+
+.textInput {
+  border: var(--border-width) solid #ccc;
+  border-radius: var(--border-radius-small);
+  padding: var(--spacing-s);
+  font-size: var(--font-size-medium);
+  width: 100%;
+  margin-bottom: var(--spacing-m);
+}
+
+.label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-medium);
+  font-weight: 500;
+}
+
+/* Responsive component styles */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-s);
+  }
+  
+  .card {
+    padding: var(--spacing-s);
+  }
+  
+  .button {
+    width: 100%;
+    margin-bottom: var(--spacing-s);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: var(--spacing-m);
+  }
+  
+  .card {
+    padding: var(--spacing-m);
+  }
+}
+
+@media (min-width: 1025px) {
+  .container {
+    max-width: 1200px;
+  }
+  
+  .button {
+    min-width: 120px;
+  }
+}
