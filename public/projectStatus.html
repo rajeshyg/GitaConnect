@@ -17,6 +17,23 @@
             --hover-bg: #2d3748;
             --shadow-color: rgba(0, 0, 0, 0.5);
             --input-bg: #374151;
+
+            /* Status colors */
+            --pending-bg: #450a0a;
+            --pending-color: #fca5a5;
+            --pending-border: #7f1d1d;
+            --in-progress-bg: #422006;
+            --in-progress-color: #fcd34d;
+            --in-progress-border: #854d0e;
+            --completed-bg: #064e3b;
+            --completed-color: #6ee7b7;
+            --completed-border: #047857;
+            --failed-bg: #7f1d1d;
+            --failed-color: #fecaca;
+            --failed-border: #b91c1c;
+            --na-bg: #1f2937;
+            --na-color: #9ca3af;
+            --na-border: #4b5563;
         }
 
         body {
@@ -190,38 +207,52 @@
         }
 
         .status {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 10px;
+            padding: 4px 8px;  /* Reduced padding */
+            border-radius: 12px;
+            font-size: 9px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-left: 12px;
+            letter-spacing: 0.5px;  /* Reduced letter spacing */
+            margin-left: 8px;
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            white-space: nowrap;
         }
 
-        .not-started { 
-            background-color: #450a0a; 
-            color: #fca5a5;
-            border: 1px solid #7f1d1d;
+        .not-started, .Pending { 
+            background-color: var(--pending-bg); 
+            color: var(--pending-color);
+            border: 1px solid var(--pending-border);
         }
         
-        .in-progress { 
-            background-color: #422006; 
-            color: #fcd34d;
-            border: 1px solid #854d0e;
+        .in-progress, .In-progress { 
+            background-color: var(--in-progress-bg); 
+            color: var(--in-progress-color);
+            border: 1px solid var(--in-progress-border);
         }
         
-        .completed { 
-            background-color: #064e3b; 
-            color: #6ee7b7;
-            border: 1px solid #047857;
+        .completed, .Completed { 
+            background-color: var(--completed-bg); 
+            color: var(--completed-color);
+            border: 1px solid var(--completed-border);
+        }
+
+        .Failed {
+            background-color: var(--failed-bg);
+            color: var(--failed-color);
+            border: 1px solid var(--failed-border);
+        }
+
+        .N-A {
+            background-color: var(--na-bg);
+            color: var(--na-color);
+            border: 1px solid var(--na-border);
         }
 
         .subtask {
             padding: 14px 18px 14px 44px;
             position: relative;
-            font-size: 13px;
+            font-size: 14px; /* Increased from 13px */
         }
 
         .subtask::before {
@@ -270,7 +301,9 @@
 
         .subtask .status {
             font-size: 8px;
-            padding: 4px 10px;
+            padding: 2px 5px;  /* Even smaller padding */
+            display: inline-block;
+            white-space: nowrap;
         }
 
         /* Loading indicator */
@@ -287,6 +320,57 @@
             padding: 20px;
             animation: pulse 1.5s infinite;
             color: var(--primary-color);
+        }
+
+        .status-details {
+            display: flex;
+            flex-direction: row;  /* Ensure horizontal layout */
+            align-items: center;
+            flex-wrap: nowrap;  /* Prevent wrapping */
+            gap: 4px;
+            margin-top: 8px;
+            font-size: 10px;
+        }
+
+        .status-item {
+            display: inline-flex;
+            flex-direction: row;  /* Horizontal layout */
+            align-items: center;
+            margin-right: 6px;
+            white-space: nowrap;
+        }
+
+        .status-label {
+            color: var(--text-muted);
+            font-size: 9px;
+            margin-right: 4px;
+            white-space: nowrap;
+        }
+
+        .task-id {
+            font-size: 10px;
+            background-color: var(--card-bg);
+            color: var(--text-muted);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 8px;
+            font-family: monospace;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Add styles for default visibility states */
+        .phase-content.expanded,
+        .iteration-content.expanded,
+        .task-content.expanded {
+            display: block;
+        }
+        
+        .status-details.all-completed {
+            display: none;
+        }
+        
+        .status-details.visible {
+            display: flex;
         }
     </style>
 </head>
@@ -305,13 +389,18 @@
                     <option value="not started">Not Started</option>
                     <option value="in progress">In Progress</option>
                     <option value="completed">Completed</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Failed">Failed</option>
+                    <option value="N/A">N/A</option>
                 </select>
             </div>
             <div>
-                <label for="sort">Sort by</label>
-                <select id="sort">
-                    <option value="name">Name</option>
-                    <option value="status">Status</option>
+                <label for="status-type">Status Type</label>
+                <select id="status-type">
+                    <option value="overall">Overall Status</option>
+                    <option value="testAutomation">Test Automation</option>
+                    <option value="devStatus">Development</option>
+                    <option value="manualTestingSignOff">Manual Testing</option>
                 </select>
             </div>
         </div>
@@ -342,6 +431,7 @@
             const project = data.project;
             const phases = project.phases;
             let html = '';
+            let statusType = document.getElementById('status-type').value || 'overall';
 
             // Helper function to sort items
             const sortItems = (items, sortBy) => {
@@ -357,12 +447,37 @@
                 return items;
             };
 
+            // Helper to check if all items are completed
+            function areAllCompleted(items) {
+                if (!items || items.length === 0) return false;
+                return items.every(item => {
+                    if (item.status) return item.status === 'completed';
+                    if (item.subtasks && item.subtasks.length > 0) return areAllCompleted(item.subtasks);
+                    if (item.tasks && item.tasks.length > 0) return areAllCompleted(item.tasks);
+                    return false;
+                });
+            }
+            
+            // Helper to check if attributes are all completed or N/A
+            function areAllAttributesCompleted(subtask) {
+                const testStatus = subtask.testAutomation || 'N/A';
+                const devStatus = subtask.devStatus || 'Pending';
+                const manualStatus = subtask.manualTestingSignOff || 'Pending';
+                
+                return (testStatus === 'Completed' || testStatus === 'N/A') && 
+                       (devStatus === 'Completed' || devStatus === 'N/A') && 
+                       (manualStatus === 'Completed' || manualStatus === 'N/A');
+            }
+
             // Sort phases
             const sortedPhases = sortItems(phases, sortBy);
 
             sortedPhases.forEach(phase => {
                 const phaseStatus = calculatePhaseStatus(phase);
-                html += `<div class="phase"><h2>${phase.name} <span class="status ${phaseStatus.replace(' ', '-')}">${phaseStatus}</span></h2><div class="phase-content hidden">`;
+                const phaseAllCompleted = phaseStatus === 'completed';
+                const phaseContentClass = phaseAllCompleted ? 'phase-content hidden' : 'phase-content expanded';
+                
+                html += `<div class="phase"><h2><span class="task-id">${phase.id}</span>${phase.name} <span class="status ${phaseStatus.replace(' ', '-')}">${phaseStatus}</span></h2><div class="${phaseContentClass}">`;
                 
                 // Handle iterations
                 if (phase.iterations && phase.iterations.length > 0) {
@@ -370,22 +485,59 @@
                     
                     sortedIterations.forEach(iteration => {
                         const iterationStatus = calculateStatus(iteration.tasks || []);
-                        html += `<div class="iteration"><h3>${iteration.name} <span class="status ${iterationStatus.replace(' ', '-')}">${iterationStatus}</span></h3><div class="iteration-content hidden">`;
+                        const iterationAllCompleted = iterationStatus === 'completed';
+                        const iterationContentClass = iterationAllCompleted ? 'iteration-content hidden' : 'iteration-content expanded';
+                        
+                        html += `<div class="iteration"><h3><span class="task-id">${iteration.id}</span>${iteration.name} <span class="status ${iterationStatus.replace(' ', '-')}">${iterationStatus}</span></h3><div class="${iterationContentClass}">`;
                         
                         if (iteration.tasks && iteration.tasks.length > 0) {
                             const sortedTasks = sortItems(iteration.tasks, sortBy);
                             
                             sortedTasks.forEach(task => {
                                 const taskStatus = calculateStatus(task.subtasks || []);
-                                html += `<div class="task"><strong>${task.name} <span class="status ${taskStatus.replace(' ', '-')}">${taskStatus}</span></strong><div class="task-content hidden">`;
+                                const taskAllCompleted = taskStatus === 'completed';
+                                const taskContentClass = taskAllCompleted ? 'task-content hidden' : 'task-content expanded';
+                                
+                                html += `<div class="task"><strong><span class="task-id">${task.id}</span>${task.name} <span class="status ${taskStatus.replace(' ', '-')}">${taskStatus}</span></strong><div class="${taskContentClass}">`;
                                 
                                 if (task.subtasks && task.subtasks.length > 0) {
                                     const sortedSubtasks = sortItems(task.subtasks, sortBy);
                                     
                                     sortedSubtasks.forEach(subtask => {
-                                        if (subtask.name.toLowerCase().includes(searchTerm.toLowerCase()) && (filterStatus === '' || subtask.status === filterStatus)) {
+                                        if (subtask.name.toLowerCase().includes(searchTerm.toLowerCase()) && 
+                                            (filterStatus === '' || 
+                                             (statusType === 'overall' && subtask.status === filterStatus) ||
+                                             (statusType === 'testAutomation' && (subtask.testAutomation || 'N/A') === filterStatus) ||
+                                             (statusType === 'devStatus' && (subtask.devStatus || 'Pending') === filterStatus) ||
+                                             (statusType === 'manualTestingSignOff' && (subtask.manualTestingSignOff || 'Pending') === filterStatus))) {
+                                            
                                             const statusClass = subtask.status.replace(' ', '-');
-                                            html += `<div class="subtask">${subtask.name} <span class="status ${statusClass}">${subtask.status}</span></div>`;
+                                            const testAutomationClass = (subtask.testAutomation || 'N/A').replace('/', '-').replace(' ', '-');
+                                            const devStatusClass = (subtask.devStatus || 'Pending').replace('/', '-').replace(' ', '-');
+                                            const manualTestingClass = (subtask.manualTestingSignOff || 'Pending').replace('/', '-').replace(' ', '-');
+                                            
+                                            // Check if all attributes are completed or N/A
+                                            const allAttributesCompleted = areAllAttributesCompleted(subtask);
+                                            const attributesClass = allAttributesCompleted ? 'status-details all-completed' : 'status-details';
+                                            
+                                            html += `
+                                            <div class="subtask">
+                                                <span class="task-id">${subtask.id}</span>${subtask.name} <span class="status ${statusClass}">${subtask.status}</span>
+                                                <div class="${attributesClass}">
+                                                    <div class="status-item">
+                                                        <span class="status-label">Test:</span>
+                                                        <span class="status ${testAutomationClass}">${subtask.testAutomation || 'N/A'}</span>
+                                                    </div>
+                                                    <div class="status-item">
+                                                        <span class="status-label">Dev:</span>
+                                                        <span class="status ${devStatusClass}">${subtask.devStatus || 'Pending'}</span>
+                                                    </div>
+                                                    <div class="status-item">
+                                                        <span class="status-label">Manual:</span>
+                                                        <span class="status ${manualTestingClass}">${subtask.manualTestingSignOff || 'Pending'}</span>
+                                                    </div>
+                                                </div>
+                                            </div>`;
                                         }
                                     });
                                 }
@@ -402,7 +554,10 @@
                     
                     sortedTasks.forEach(task => {
                         const taskStatus = calculateStatus(task.subtasks || []);
-                        html += `<div class="task"><strong>${task.name} <span class="status ${taskStatus.replace(' ', '-')}">${taskStatus}</span></strong><div class="task-content hidden">`;
+                        const taskAllCompleted = taskStatus === 'completed';
+                        const taskContentClass = taskAllCompleted ? 'task-content hidden' : 'task-content expanded';
+                        
+                        html += `<div class="task"><strong><span class="task-id">${task.id}</span>${task.name} <span class="status ${taskStatus.replace(' ', '-')}">${taskStatus}</span></strong><div class="${taskContentClass}">`;
                         
                         if (task.subtasks && task.subtasks.length > 0) {
                             const sortedSubtasks = sortItems(task.subtasks, sortBy);
@@ -410,7 +565,7 @@
                             sortedSubtasks.forEach(subtask => {
                                 if (subtask.name.toLowerCase().includes(searchTerm.toLowerCase()) && (filterStatus === '' || subtask.status === filterStatus)) {
                                     const statusClass = subtask.status.replace(' ', '-');
-                                    html += `<div class="subtask">${subtask.name} <span class="status ${statusClass}">${subtask.status}</span></div>`;
+                                    html += `<div class="subtask"><span class="task-id">${subtask.id}</span>${subtask.name} <span class="status ${statusClass}">${subtask.status}</span></div>`;
                                 }
                             });
                         }
@@ -429,6 +584,7 @@
                 header.addEventListener('click', () => {
                     const content = header.nextElementSibling;
                     content.classList.toggle('hidden');
+                    content.classList.toggle('expanded');
                     header.parentElement.classList.toggle('open');
                 });
             });
@@ -437,6 +593,7 @@
                 header.addEventListener('click', () => {
                     const content = header.nextElementSibling;
                     content.classList.toggle('hidden');
+                    content.classList.toggle('expanded');
                     header.parentElement.classList.toggle('open');
                 });
             });
@@ -445,7 +602,22 @@
                 header.addEventListener('click', () => {
                     const content = header.nextElementSibling;
                     content.classList.toggle('hidden');
+                    content.classList.toggle('expanded');
                     header.parentElement.classList.toggle('open');
+                });
+            });
+            
+            // Add event listeners to toggle attribute visibility
+            document.querySelectorAll('.subtask').forEach(subtask => {
+                subtask.addEventListener('click', (e) => {
+                    // Only toggle if the click is directly on the subtask element, not on a child
+                    if (e.target === subtask) {
+                        const statusDetails = subtask.querySelector('.status-details');
+                        if (statusDetails) {
+                            statusDetails.classList.toggle('all-completed');
+                            statusDetails.classList.toggle('visible');
+                        }
+                    }
                 });
             });
         }
@@ -481,30 +653,37 @@
 
         // Load data and set up event listeners
         loadProjectData().then(data => {
-            console.log('Starting to process data...'); // Debug log
+            console.log('Starting to process data...');
             let searchTerm = '';
             let filterStatus = '';
             let sortBy = 'name';
+            let statusType = 'overall';
 
             // Initial render
-            generateProjectStatus(data, searchTerm, filterStatus, sortBy);
+            generateProjectStatus(data, searchTerm, filterStatus, sortBy, statusType);
 
             // Search input
             document.getElementById('search').addEventListener('input', (e) => {
                 searchTerm = e.target.value;
-                generateProjectStatus(data, searchTerm, filterStatus, sortBy);
+                generateProjectStatus(data, searchTerm, filterStatus, sortBy, statusType);
             });
 
             // Filter by status
             document.getElementById('filter-status').addEventListener('change', (e) => {
                 filterStatus = e.target.value;
-                generateProjectStatus(data, searchTerm, filterStatus, sortBy);
+                generateProjectStatus(data, searchTerm, filterStatus, sortBy, statusType);
             });
 
             // Sort by
             document.getElementById('sort').addEventListener('change', (e) => {
                 sortBy = e.target.value;
-                generateProjectStatus(data, searchTerm, filterStatus, sortBy);
+                generateProjectStatus(data, searchTerm, filterStatus, sortBy, statusType);
+            });
+            
+            // Status type
+            document.getElementById('status-type').addEventListener('change', (e) => {
+                statusType = e.target.value;
+                generateProjectStatus(data, searchTerm, filterStatus, sortBy, statusType);
             });
         }).catch(error => {
             console.error('Failed to initialize:', error);

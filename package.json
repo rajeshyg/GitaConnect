@@ -6,8 +6,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "jest",
+    "eject": "react-scripts eject",
+    "test:watch": "jest --watch",
+    "test:button": "jest Button.test.jsx",
+    "test:card": "jest Card.test.jsx",
+    "test:navbar": "jest NavBar.test.jsx",
+    "test:avatar": "jest Avatar.test.jsx",
+    "test:badge": "jest Badge.test.jsx"
   },
   "dependencies": {
     "json2csv": "^5.0.7",

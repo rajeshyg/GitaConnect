@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from './Button';
 import Card from './Card';
 import '../styles/global.css';
+import './TestComponentsPage.css';
 
 /**
  * Test page to manually verify component implementations

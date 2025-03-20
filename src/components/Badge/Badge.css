@@ -1,0 +1,76 @@
+.badge-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: white;
+  border-radius: 10px;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.badge-dot {
+  min-width: 8px;
+  height: 8px;
+  padding: 0;
+}
+
+.badge-primary {
+  background-color: #3b82f6;
+}
+
+.badge-secondary {
+  background-color: #6b7280;
+}
+
+.badge-success {
+  background-color: #10b981;
+}
+
+.badge-error {
+  background-color: #ef4444;
+}
+
+.badge-warning {
+  background-color: #f59e0b;
+}
+
+.badge-info {
+  background-color: #06b6d4;
+}
+
+/* Positioning */
+.badge-position-top-right {
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.badge-position-top-left {
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.badge-position-bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 50%);
+}
+
+.badge-position-bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, 50%);
+}

@@ -1,0 +1,88 @@
+.ui-component-showcase {
+  padding: 16px;
+  background-color: #f9fafb; /* Light gray background like Home.jsx */
+  min-height: 100vh;
+}
+
+.ui-component-showcase h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #111827;
+}
+
+/* Section styling - this is container-level, not component-level */
+.ui-component-showcase .ios-section {
+  margin-bottom: 32px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.ui-component-showcase .ios-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.ui-component-showcase .ios-section-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+/* Horizontal scrolling container - this is layout, not component styling */
+.ui-component-showcase .ios-scrollable-cards {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 8px 0;
+  margin: 0 -8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ui-component-showcase .ios-scrollable-cards::-webkit-scrollbar {
+  display: none;
+}
+
+.ui-component-showcase .ios-scrollable-cards > * {
+  flex-shrink: 0;
+}
+
+.click-counter {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #6b7280;
+  padding: 8px;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.badge-showcase, .avatar-showcase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 16px 0;
+}
+
+.badge-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-box {
+  width: 80px;
+  height: 80px;
+  background-color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #4b5563;
+}

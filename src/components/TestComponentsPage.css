@@ -1,0 +1,41 @@
+.component-test-container {
+    background-color: var(--background);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow-1);
+}
+
+h1 {
+    font-size: var(--font-size-xxlarge);
+    color: var(--on-background);
+}
+
+h2 {
+    font-size: var(--font-size-xlarge);
+    color: var(--on-background);
+}
+
+h3 {
+    font-size: var(--font-size-large);
+    color: var(--on-background);
+}
+
+button {
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-small);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--primary);
+    color: var(--on-primary);
+}
+
+.card {
+    background-color: var(--surface);
+    padding: var(--spacing-l);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow-2);
+}
